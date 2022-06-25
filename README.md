@@ -128,7 +128,7 @@ However, some files are copyrighted and do not fall under the coverage of The Un
 
 2. **Public Sans**
 
-   Location: `/assets/fonts/Grandstander-*`
+   Location: `/assets/fonts/PublicSans-*`
 
    ```text
    Copyright 2015 The Public Sans Project Authors (https://github.com/uswds/public-sans)
