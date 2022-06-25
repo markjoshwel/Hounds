@@ -1,0 +1,336 @@
+[gd_scene load_steps=24 format=3 uid="uid://bix5unw6nasbb"]
+
+[ext_resource type="Texture2D" uid="uid://2qgtko6epaqw" path="res://assets/board/board@1440.png" id="1_2c4co"]
+[ext_resource type="Script" path="res://scenes/Game.gd" id="1_wso2k"]
+[ext_resource type="Script" path="res://scenes/Board.gd" id="2_2a57j"]
+[ext_resource type="PackedScene" uid="uid://c644qx4hcw54v" path="res://scenes/PauseMenu.tscn" id="2_6abm7"]
+[ext_resource type="Texture2D" uid="uid://dg8oypgl35sfa" path="res://assets/player/player-hare-potential.png" id="4_h4bly"]
+[ext_resource type="Script" path="res://scenes/Turns.gd" id="4_iy152"]
+[ext_resource type="Script" path="res://scenes/Place.gd" id="4_qq7nv"]
+[ext_resource type="Texture2D" uid="uid://bqwahf0chvl8m" path="res://assets/player/player-hounds-potential.png" id="5_lcufr"]
+[ext_resource type="FontData" uid="uid://bjm5gmxnegfgy" path="res://assets/fonts/PublicSans-Thin.ttf" id="5_w12xr"]
+[ext_resource type="Script" path="res://scenes/Hare.gd" id="6_5st84"]
+[ext_resource type="PackedScene" uid="uid://caj36hqnp0obv" path="res://scenes/ResultScreen.tscn" id="7_8utcu"]
+[ext_resource type="Texture2D" uid="uid://ciexnx63sa4c" path="res://assets/indicator/indicator-hare.svg" id="7_24keq"]
+[ext_resource type="Texture2D" uid="uid://s8oa7wgw7g87" path="res://assets/indicator/indicator-hounds.svg" id="8_e2f4f"]
+[ext_resource type="Script" path="res://scenes/Hound.gd" id="8_fyxec"]
+[ext_resource type="Texture2D" uid="uid://0l5nn06n0i7c" path="res://assets/player/player-hare.svg" id="9_npe51"]
+[ext_resource type="Texture2D" uid="uid://0pkwrawy3we2" path="res://assets/player/player-hound.svg" id="10_3ee5n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_610d8"]
+radius = 110.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ru4ma"]
+radius = 86.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gyg7v"]
+radius = 86.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tl40k"]
+radius = 86.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5pgud"]
+radius = 86.0
+
+[sub_resource type="Font" id="Font_qec4p"]
+data/0 = ExtResource( "5_w12xr" )
+
+[sub_resource type="Font" id="Font_aien2"]
+data/0 = ExtResource( "5_w12xr" )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( "1_wso2k" )
+
+[node name="Board" type="Node2D" parent="."]
+script = ExtResource( "2_2a57j" )
+
+[node name="Background" type="Sprite2D" parent="Board"]
+position = Vector2(1280, 720)
+texture = ExtResource( "1_2c4co" )
+
+[node name="HareIndicator" type="Sprite2D" parent="Board"]
+position = Vector2(380, 270)
+texture = ExtResource( "7_24keq" )
+
+[node name="HoundsIndicator" type="Sprite2D" parent="Board"]
+position = Vector2(2180, 1170)
+rotation = 3.14159
+texture = ExtResource( "8_e2f4f" )
+
+[node name="Places" type="Node2D" parent="Board"]
+
+[node name="Place1" type="Area2D" parent="Board/Places"]
+position = Vector2(380, 720)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place1"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place1"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place1"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place2" type="Area2D" parent="Board/Places"]
+position = Vector2(830, 270)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place2"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place2"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place2"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place3" type="Area2D" parent="Board/Places"]
+position = Vector2(830, 720)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place3"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place3"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place3"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place4" type="Area2D" parent="Board/Places"]
+position = Vector2(830, 1170)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place4"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place4"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place4"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place5" type="Area2D" parent="Board/Places"]
+position = Vector2(1280, 270)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place5"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place5"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place5"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place6" type="Area2D" parent="Board/Places"]
+position = Vector2(1280, 720)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place6"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place6"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place6"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place7" type="Area2D" parent="Board/Places"]
+position = Vector2(1280, 1170)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place7"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place7"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place7"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place8" type="Area2D" parent="Board/Places"]
+position = Vector2(1730, 270)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place8"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place8"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place8"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place9" type="Area2D" parent="Board/Places"]
+position = Vector2(1730, 720)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place9"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place9"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place9"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place10" type="Area2D" parent="Board/Places"]
+position = Vector2(1730, 1170)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place10"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place10"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place10"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Place11" type="Area2D" parent="Board/Places"]
+position = Vector2(2180, 720)
+script = ExtResource( "4_qq7nv" )
+
+[node name="Boundary" type="CollisionShape2D" parent="Board/Places/Place11"]
+shape = SubResource( "CircleShape2D_610d8" )
+
+[node name="HarePotential" type="Sprite2D" parent="Board/Places/Place11"]
+visible = false
+texture = ExtResource( "4_h4bly" )
+
+[node name="HoundPotential" type="Sprite2D" parent="Board/Places/Place11"]
+visible = false
+texture = ExtResource( "5_lcufr" )
+
+[node name="Hare" type="Area2D" parent="."]
+position = Vector2(380, 720)
+script = ExtResource( "6_5st84" )
+
+[node name="Sprite2D" type="Sprite2D" parent="Hare"]
+texture = ExtResource( "9_npe51" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hare"]
+shape = SubResource( "CircleShape2D_ru4ma" )
+
+[node name="Hound1" type="Area2D" parent="."]
+position = Vector2(1730, 270)
+script = ExtResource( "8_fyxec" )
+
+[node name="Sprite2D" type="Sprite2D" parent="Hound1"]
+texture = ExtResource( "10_3ee5n" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hound1"]
+shape = SubResource( "CircleShape2D_gyg7v" )
+
+[node name="Hound2" type="Area2D" parent="."]
+position = Vector2(2180, 720)
+script = ExtResource( "8_fyxec" )
+
+[node name="Sprite2D" type="Sprite2D" parent="Hound2"]
+texture = ExtResource( "10_3ee5n" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hound2"]
+shape = SubResource( "CircleShape2D_tl40k" )
+
+[node name="Hound3" type="Area2D" parent="."]
+position = Vector2(1730, 1170)
+script = ExtResource( "8_fyxec" )
+
+[node name="Sprite2D" type="Sprite2D" parent="Hound3"]
+texture = ExtResource( "10_3ee5n" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hound3"]
+shape = SubResource( "CircleShape2D_5pgud" )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Turns" type="Control" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource( "4_iy152" )
+
+[node name="TurnsLabelTop" type="Label" parent="UI/Turns"]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1153.5
+offset_top = 50.0
+offset_right = 1366.5
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0.215686, 0.219608, 0.219608, 1)
+theme_override_fonts/font = SubResource( "Font_qec4p" )
+theme_override_font_sizes/font_size = 55
+text = "1/30"
+horizontal_alignment = 1
+
+[node name="TurnsLabelBottom" type="Label" parent="UI/Turns"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1346.5
+offset_top = 1370.0
+offset_right = 1559.5
+offset_bottom = 1446.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 3.14159
+theme_override_colors/font_color = Color(0.215686, 0.219608, 0.219608, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource( "Font_aien2" )
+theme_override_font_sizes/font_size = 55
+text = "1/30"
+horizontal_alignment = 1
+metadata/_edit_layout_mode = 1
+
+[node name="PauseMenu" parent="UI" instance=ExtResource( "2_6abm7" )]
+visible = false
+
+[node name="ResultScreen" parent="UI" instance=ExtResource( "7_8utcu" )]
+process_mode = 3
+visible = false
+
+[connection signal="end_turn" from="." to="." method="turn_end"]
+[connection signal="new_turn" from="." to="." method="turn_start"]
+[connection signal="hit" from="Board" to="." method="_on_board_hit"]
+[connection signal="input_event" from="Board/Places/Place1" to="Board" method="_on_place_1_input_event"]
+[connection signal="input_event" from="Board/Places/Place2" to="Board" method="_on_place_2_input_event"]
+[connection signal="input_event" from="Board/Places/Place3" to="Board" method="_on_place_3_input_event"]
+[connection signal="input_event" from="Board/Places/Place4" to="Board" method="_on_place_4_input_event"]
+[connection signal="input_event" from="Board/Places/Place5" to="Board" method="_on_place_5_input_event"]
+[connection signal="input_event" from="Board/Places/Place6" to="Board" method="_on_place_6_input_event"]
+[connection signal="input_event" from="Board/Places/Place7" to="Board" method="_on_place_7_input_event"]
+[connection signal="input_event" from="Board/Places/Place8" to="Board" method="_on_place_8_input_event"]
+[connection signal="input_event" from="Board/Places/Place9" to="Board" method="_on_place_9_input_event"]
+[connection signal="input_event" from="Board/Places/Place10" to="Board" method="_on_place_10_input_event"]
+[connection signal="input_event" from="Board/Places/Place11" to="Board" method="_on_place_11_input_event"]
+[connection signal="change_hound_focus" from="Hound1" to="." method="change_hound_focus"]
+[connection signal="input_event" from="Hound1" to="Hound1" method="_on_hound_1_input_event"]
+[connection signal="change_hound_focus" from="Hound2" to="." method="change_hound_focus"]
+[connection signal="input_event" from="Hound2" to="Hound2" method="_on_hound_2_input_event"]
+[connection signal="change_hound_focus" from="Hound3" to="." method="change_hound_focus"]
+[connection signal="input_event" from="Hound3" to="Hound3" method="_on_hound_3_input_event"]
+[connection signal="no_more_turns" from="UI/Turns" to="." method="_on_turns_no_more_turns"]
+[connection signal="game_quit" from="UI/PauseMenu" to="." method="quit"]
+[connection signal="game_quit" from="UI/ResultScreen" to="." method="quit"]

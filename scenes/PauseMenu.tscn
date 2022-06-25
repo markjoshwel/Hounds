@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://c644qx4hcw54v"]
+
+[ext_resource type="Theme" uid="uid://drxb24hyfybfs" path="res://assets/theme/main_theme.tres" id="1_istjo"]
+[ext_resource type="Script" path="res://scenes/PauseMenu.gd" id="2_qvsdf"]
+[ext_resource type="FontData" uid="uid://bc255wpcxpuxe" path="res://assets/fonts/Grandstander-Bold.otf" id="3_sju1x"]
+
+[sub_resource type="Font" id="Font_ey3fs"]
+data/0 = ExtResource( "3_sju1x" )
+
+[node name="MenuPause" type="Control"]
+process_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( "1_istjo" )
+script = ExtResource( "2_qvsdf" )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.960784, 0.968627, 0.964706, 0.666667)
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+offset_left = 941.0
+offset_top = 344.0
+offset_right = 1619.0
+offset_bottom = 1095.0
+
+[node name="PauseLabel" type="Label" parent="ColorRect/CenterContainer/VBoxContainer"]
+offset_right = 678.0
+offset_bottom = 153.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource( "Font_ey3fs" )
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Spacing" type="Control" parent="ColorRect/CenterContainer/VBoxContainer"]
+minimum_size = Vector2(0, 300)
+offset_top = 157.0
+offset_right = 678.0
+offset_bottom = 457.0
+
+[node name="ButtonResume" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+offset_top = 461.0
+offset_right = 678.0
+offset_bottom = 555.0
+text = "Resume Game"
+
+[node name="ButtonQuit" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+offset_top = 559.0
+offset_right = 678.0
+offset_bottom = 653.0
+text = "Quit to Main Menu"
+
+[node name="ButtonExit" type="Button" parent="ColorRect/CenterContainer/VBoxContainer"]
+offset_top = 657.0
+offset_right = 678.0
+offset_bottom = 751.0
+theme_override_colors/font_pressed_color = Color(0.780392, 0.266667, 0.172549, 1)
+theme_override_colors/font_hover_color = Color(0.941176, 0.317647, 0.211765, 1)
+text = "Exit Game"
+
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ButtonResume" to="." method="_on_button_resume_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ButtonQuit" to="." method="_on_button_menu_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]
