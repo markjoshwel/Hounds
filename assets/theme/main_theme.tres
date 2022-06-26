@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://dhue2dcc3d6cn"]
 
-[ext_resource type="FontData" path="res://assets/fonts/PublicSans-Regular.otf" id="1_k2c5o"]
+[ext_resource type="FontData" uid="uid://dqwxuvgl6ub42" path="res://assets/fonts/PublicSans-Regular.otf" id="1_k2c5o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aekfr"]
 

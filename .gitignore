@@ -1,2 +1,5 @@
+# Hounds specific ignores
+release/
+
 # Godot 4+ specific ignores
 .godot/

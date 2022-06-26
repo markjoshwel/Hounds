@@ -9,13 +9,13 @@
 [ext_resource type="Script" path="res://scenes/Place.gd" id="4_qq7nv"]
 [ext_resource type="Texture2D" uid="uid://bqwahf0chvl8m" path="res://assets/player/player-hounds-potential.png" id="5_lcufr"]
 [ext_resource type="FontData" uid="uid://bjm5gmxnegfgy" path="res://assets/fonts/PublicSans-Thin.ttf" id="5_w12xr"]
-[ext_resource type="Script" path="res://scenes/Hare.gd" id="6_5st84"]
 [ext_resource type="PackedScene" uid="uid://caj36hqnp0obv" path="res://scenes/ResultScreen.tscn" id="7_8utcu"]
 [ext_resource type="Texture2D" uid="uid://ciexnx63sa4c" path="res://assets/indicator/indicator-hare.svg" id="7_24keq"]
 [ext_resource type="Texture2D" uid="uid://s8oa7wgw7g87" path="res://assets/indicator/indicator-hounds.svg" id="8_e2f4f"]
 [ext_resource type="Script" path="res://scenes/Hound.gd" id="8_fyxec"]
 [ext_resource type="Texture2D" uid="uid://0l5nn06n0i7c" path="res://assets/player/player-hare.svg" id="9_npe51"]
 [ext_resource type="Texture2D" uid="uid://0pkwrawy3we2" path="res://assets/player/player-hound.svg" id="10_3ee5n"]
+[ext_resource type="Texture2D" uid="uid://cj3drnwty4ixy" path="res://assets/player/player-hound-select.svg" id="13_omrst"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_610d8"]
 radius = 110.0
@@ -226,7 +226,6 @@ texture = ExtResource( "5_lcufr" )
 
 [node name="Hare" type="Area2D" parent="."]
 position = Vector2(380, 720)
-script = ExtResource( "6_5st84" )
 
 [node name="Sprite2D" type="Sprite2D" parent="Hare"]
 texture = ExtResource( "9_npe51" )
@@ -263,6 +262,12 @@ texture = ExtResource( "10_3ee5n" )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hound3"]
 shape = SubResource( "CircleShape2D_5pgud" )
+
+[node name="HoundSelect" type="Node2D" parent="."]
+position = Vector2(2180, 720)
+
+[node name="Sprite2D" type="Sprite2D" parent="HoundSelect"]
+texture = ExtResource( "13_omrst" )
 
 [node name="UI" type="CanvasLayer" parent="."]
 

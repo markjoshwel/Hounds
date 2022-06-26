@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c644qx4hcw54v"]
 
-[ext_resource type="Theme" uid="uid://drxb24hyfybfs" path="res://assets/theme/main_theme.tres" id="1_istjo"]
+[ext_resource type="Theme" uid="uid://dhue2dcc3d6cn" path="res://assets/theme/main_theme.tres" id="1_istjo"]
 [ext_resource type="Script" path="res://scenes/PauseMenu.gd" id="2_qvsdf"]
 [ext_resource type="FontData" uid="uid://bc255wpcxpuxe" path="res://assets/fonts/Grandstander-Bold.otf" id="3_sju1x"]
 

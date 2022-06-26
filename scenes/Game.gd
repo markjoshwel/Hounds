@@ -12,6 +12,7 @@ var turn: bool = false:  # true = hare, false = hounds
 		$UI/Turns.turns += 1
 		$Board/HareIndicator.visible = turn
 		$Board/HoundsIndicator.visible = not turn
+		$HoundSelect.visible = not turn
 
 enum Entity {HARE, HOUND1, HOUND2, HOUND3}
 var focus: Entity = Entity.HOUND2
@@ -19,6 +20,7 @@ var hare_position: int = 1
 var hound1_position: int = 8
 var hound2_position: int = 11
 var hound3_position: int = 10
+var last_hound: Entity = Entity.HOUND2
 
 func _ready() -> void:
 	$UI/Turns.turns = 1
@@ -41,7 +43,9 @@ func quit() -> void:
 
 func _on_board_hit(place: int) -> void:
 	print("hit! ", place)
-	if not (place in potentials): return
+	if not (place in potentials):
+		print("  not in potentials, returning")
+		return
 
 	var target_pos: Vector2 = Vector2.ZERO
 	var target_place: int = 1
@@ -58,6 +62,8 @@ func _on_board_hit(place: int) -> void:
 
 		Entity.HOUND3:
 			target_pos = $Hound3.position
+	
+	print("  entity at ", target_pos)
 
 
 	match place:
@@ -94,6 +100,8 @@ func _on_board_hit(place: int) -> void:
 		11:
 			target_pos = $Board/Places/Place11.position
 			target_place = 11
+
+	print("  targeting ", target_place, " at ", target_pos)
 	
 	match focus:
 		Entity.HARE:
@@ -112,6 +120,7 @@ func _on_board_hit(place: int) -> void:
 			$Hound3.position = target_pos
 			hound3_position = target_place
 
+	print("  ending turn")
 	emit_signal("end_turn")
 
 
@@ -120,11 +129,14 @@ func turn_start() -> void:
 	focus_on(focus)
 
 func focus_on(ent: Entity) -> void:
+	print("focus_on")
 	$Board.hare_potentials_set(false)
 	$Board.hound_potential_set(false)
-	potentials = []
+	print("  potential light reset")
 	
+	potentials = []
 	focus = ent
+	print("  set ent=", ent)
 
 	match ent:
 		Entity.HARE:
@@ -134,6 +146,7 @@ func focus_on(ent: Entity) -> void:
 				hound2_position,
 				hound3_position
 			)
+			print("  hare potentials = ", potentials)
 
 		Entity.HOUND1:
 			potentials = $Board.hound_potential(
@@ -142,6 +155,8 @@ func focus_on(ent: Entity) -> void:
 				hound3_position,
 				hare_position,
 			)
+			$HoundSelect.position = $Hound1.position
+			print("  hound1 potentials = ", potentials)
 
 		Entity.HOUND2:
 			potentials = $Board.hound_potential(
@@ -150,6 +165,8 @@ func focus_on(ent: Entity) -> void:
 				hound1_position,
 				hare_position,
 			)
+			$HoundSelect.position = $Hound2.position
+			print("  hound2 potentials = ", potentials)
 
 		Entity.HOUND3:
 			potentials = $Board.hound_potential(
@@ -158,6 +175,8 @@ func focus_on(ent: Entity) -> void:
 				hound2_position,
 				hare_position,
 			)
+			$HoundSelect.position = $Hound3.position
+			print("  hound3 potentials = ", potentials)
 
 
 func hare_immobile() -> bool:
@@ -172,6 +191,7 @@ func hare_immobile() -> bool:
 		hound3_position
 	)
 	$Board.hare_potentials_set(false)
+	$Board.hound_potential_set(false)
 	
 	for place in hare_potentials:
 		if not (place in [hound1_position, hound2_position, hound3_position]):
@@ -235,10 +255,11 @@ func turn_end() -> void:
 	$Board.hare_potentials_set(false)
 	$Board.hound_potential_set(false)
 
-	if turn:  # hare
+	if turn:  # now hare
+		last_hound = focus
 		focus = Entity.HARE
-	else:  # hounds
-		focus = Entity.HOUND2
+	else:  # now hounds
+		focus = last_hound
 
 	emit_signal("new_turn")
 

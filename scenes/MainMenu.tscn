@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cupkewxu1hqof"]
 
-[ext_resource type="Theme" uid="uid://drxb24hyfybfs" path="res://assets/theme/main_theme.tres" id="1_xmj0o"]
+[ext_resource type="Theme" uid="uid://dhue2dcc3d6cn" path="res://assets/theme/main_theme.tres" id="1_xmj0o"]
 [ext_resource type="Script" path="res://scenes/MainMenu.gd" id="2_awebt"]
 [ext_resource type="FontData" uid="uid://bc255wpcxpuxe" path="res://assets/fonts/Grandstander-Bold.otf" id="3_x7vm3"]
 
@@ -65,10 +65,10 @@ text = "Exit"
 [node name="SideMenuText" type="Control" parent="ColorRect"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 49.0
-offset_top = -297.0
-offset_right = 654.0
-offset_bottom = -45.0
+offset_left = 60.0
+offset_top = -362.0
+offset_right = 665.0
+offset_bottom = -110.0
 grow_vertical = 0
 metadata/_edit_layout_mode = 1
 
@@ -82,37 +82,45 @@ offset_top = -90.0
 offset_right = 269.0
 offset_bottom = 90.0
 
-[node name="Label" type="Label" parent="ColorRect/SideMenuText/VBoxContainer2"]
+[node name="Label2" type="Label" parent="ColorRect/SideMenuText/VBoxContainer2"]
 offset_right = 538.0
 offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.215686, 0.219608, 0.219608, 1)
+theme_override_font_sizes/font_size = 40
+text = "Release 2022.1.0"
+
+[node name="Label" type="Label" parent="ColorRect/SideMenuText/VBoxContainer2"]
+offset_top = 54.0
+offset_right = 538.0
+offset_bottom = 104.0
 theme_override_colors/font_color = Color(0.215686, 0.219608, 0.219608, 1)
 theme_override_font_sizes/font_size = 40
 text = "by Mark Joshwel"
 
 [node name="Spacing" type="Control" parent="ColorRect/SideMenuText/VBoxContainer2"]
 minimum_size = Vector2(0, 4)
-offset_top = 54.0
+offset_top = 108.0
 offset_right = 538.0
-offset_bottom = 58.0
+offset_bottom = 112.0
 
 [node name="GodotButton" type="LinkButton" parent="ColorRect/SideMenuText/VBoxContainer2"]
-offset_top = 62.0
+offset_top = 116.0
 offset_right = 538.0
-offset_bottom = 109.0
+offset_bottom = 163.0
 theme_override_colors/font_color = Color(0.239216, 0.254902, 0.25098, 1)
 action_mode = 0
 text = "Created with Godot 4"
 
 [node name="Spacing2" type="Control" parent="ColorRect/SideMenuText/VBoxContainer2"]
 minimum_size = Vector2(0, 10)
-offset_top = 113.0
+offset_top = 167.0
 offset_right = 538.0
-offset_bottom = 123.0
+offset_bottom = 177.0
 
 [node name="SourceButton" type="LinkButton" parent="ColorRect/SideMenuText/VBoxContainer2"]
-offset_top = 127.0
+offset_top = 181.0
 offset_right = 538.0
-offset_bottom = 174.0
+offset_bottom = 228.0
 text = "Source Code (Public Domain)"
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ButtonStart" to="." method="_on_button_start_pressed"]

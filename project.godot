@@ -14,7 +14,9 @@ config/name="Hounds"
 config/description="A simple game based on the Hare and Hounds board game."
 run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Mobile")
+boot_splash/show_image=false
 config/icon="res://icon.png"
+config/windows_native_icon="res://assets/icon/icon.ico"
 config/quit_on_go_back=false
 
 [display]
@@ -63,3 +65,4 @@ pause={
 [rendering]
 
 vulkan/rendering/back_end=1
+environment/defaults/default_clear_color=Color(0.960784, 0.968627, 0.964706, 1)

@@ -120,16 +120,16 @@ func hare_potential(
 			$Places/Place7/HarePotential.visible = true
 			potentials.append(7)
 
-	if place == 5:  # 2, 6, 9
+	if place == 5:  # 2, 6, 8
 		if not (2 in others):
 			$Places/Place2/HarePotential.visible = true
 			potentials.append(2)
 		if not (6 in others):
 			$Places/Place6/HarePotential.visible = true
 			potentials.append(6)
-		if not (9 in others):
-			$Places/Place9/HarePotential.visible = true
-			potentials.append(9)
+		if not (8 in others):
+			$Places/Place8/HarePotential.visible = true
+			potentials.append(8)
 
 	if place == 6:  # 2, 5, 8, 3, 9, 4, 7, 10
 		if not (2 in others):
@@ -220,6 +220,8 @@ func hare_potential(
 		if not (10 in others):
 			$Places/Place10/HarePotential.visible = true
 			potentials.append(10)
+	
+	print("hare potentials successful, ", potentials)
 	
 	return potentials
 
@@ -338,6 +340,8 @@ func hound_potential(
 			potentials.append(1)
 
 	# place == 1 means the hound cant go any further
+
+	print("hound potentials successful, ", potentials)
 
 	return potentials
 
