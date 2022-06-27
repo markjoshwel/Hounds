@@ -49,6 +49,7 @@ position = Vector2(1280, 720)
 texture = ExtResource( "1_2c4co" )
 
 [node name="HareIndicator" type="Sprite2D" parent="Board"]
+visible = false
 position = Vector2(380, 270)
 texture = ExtResource( "7_24keq" )
 
@@ -319,6 +320,7 @@ visible = false
 [connection signal="end_turn" from="." to="." method="turn_end"]
 [connection signal="new_turn" from="." to="." method="turn_start"]
 [connection signal="hit" from="Board" to="." method="_on_board_hit"]
+[connection signal="set_potentials" from="Board" to="." method="_on_board_set_potentials"]
 [connection signal="input_event" from="Board/Places/Place1" to="Board" method="_on_place_1_input_event"]
 [connection signal="input_event" from="Board/Places/Place2" to="Board" method="_on_place_2_input_event"]
 [connection signal="input_event" from="Board/Places/Place3" to="Board" method="_on_place_3_input_event"]

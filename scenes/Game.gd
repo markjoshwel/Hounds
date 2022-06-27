@@ -34,9 +34,18 @@ func _on_turns_no_more_turns() -> void:
 	$UI/ResultScreen.show_screen("It's a tie!")
 
 
-#func _notification(what: int) -> void:
-#	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
-#		$UI/PauseMenu.is_paused = true
+func _notification(what: int) -> void:
+	if (
+		# android back button
+		what == Node.NOTIFICATION_WM_GO_BACK_REQUEST
+	) or (
+		# desktop focus out
+		what == Node.NOTIFICATION_APPLICATION_FOCUS_OUT
+	) or (
+		# android pause
+		what == Node.NOTIFICATION_APPLICATION_PAUSED
+	):
+		$UI/PauseMenu.is_paused = true
 
 
 func quit() -> void:
@@ -45,9 +54,7 @@ func quit() -> void:
 
 
 func _on_board_hit(place: int) -> void:
-	print("hit! ", place)
 	if not (place in potentials):
-		print("  not in potentials, returning")
 		return
 
 	var target_pos: Vector2 = Vector2.ZERO
@@ -65,9 +72,6 @@ func _on_board_hit(place: int) -> void:
 
 		Entity.HOUND3:
 			target_pos = $Hound3.position
-	
-	print("  entity at ", target_pos)
-
 
 	match place:
 		1:
@@ -104,8 +108,6 @@ func _on_board_hit(place: int) -> void:
 			target_pos = $Board/Places/Place11.position
 			target_place = 11
 
-	print("  targeting ", target_place, " at ", target_pos)
-	
 	match focus:
 		Entity.HARE:
 			$Hare.position = target_pos
@@ -123,70 +125,58 @@ func _on_board_hit(place: int) -> void:
 			$Hound3.position = target_pos
 			hound3_position = target_place
 
-	print("  ending turn")
 	emit_signal("end_turn")
 
 
 func turn_start() -> void:
-	print("new turn, focus=", focus, " potentials=", potentials)
 	focus_on(focus)
 
 func focus_on(ent: Entity) -> void:
-	print("focus_on")
 	$Board.hare_potentials_set(false)
 	$Board.hound_potential_set(false)
-	print("  potential light reset")
 
 	potentials = []
 	focus = ent
-	print("  set ent=", ent)
 
 	match ent:
 		Entity.HARE:
-			potentials = $Board.hare_potential(
+			$Board.hare_potential(
 				hare_position,
 				hound1_position,
 				hound2_position,
 				hound3_position
 			)
-			print("  hare potentials = ", potentials)
 
 		Entity.HOUND1:
-			potentials = $Board.hound_potential(
+			$Board.hound_potential(
 				hound1_position,
 				hound2_position,
 				hound3_position,
 				hare_position,
 			)
 			$HoundSelect.position = $Hound1.position
-			print("  hound1 potentials = ", potentials)
 
 		Entity.HOUND2:
-			potentials = $Board.hound_potential(
+			$Board.hound_potential(
 				hound2_position,
 				hound3_position,
 				hound1_position,
 				hare_position,
 			)
 			$HoundSelect.position = $Hound2.position
-			print("  hound2 potentials = ", potentials)
 
 		Entity.HOUND3:
-			potentials = $Board.hound_potential(
+			$Board.hound_potential(
 				hound3_position,
 				hound1_position,
 				hound2_position,
 				hare_position,
 			)
 			$HoundSelect.position = $Hound3.position
-			print("  hound3 potentials = ", potentials)
 
 
 func change_hound_focus(hound: int) -> void:
-	print("change_hound_focus called")
 	if turn: return  # hare is focused right now
-
-	print("focusing on hound ", hound)
 
 	match hound:
 		1:
@@ -217,34 +207,27 @@ func hare_escaped() -> bool:
 	if hare_position == 11:
 		return true
 
-	var escaped1: bool = false
-	var escaped2: bool = false
-	var escaped3: bool = false
+	var escaped: bool = false
 
-	if hound1_position > hare_position:
-		escaped1 = true
+	if hare_position > hound1_position:
+		escaped = true
 
-	if hound2_position > hare_position:
-		escaped2 = true
+	if hare_position > hound2_position:
+		escaped = true
 
-	if hound3_position > hare_position:
-		escaped3 = true
+	if hare_position > hound3_position:
+		escaped = true
 
 	if place_to_column(hound1_position) > hare_position:
-		escaped1 = false
+		escaped = false
 
 	if place_to_column(hound2_position) > hare_position:
-		escaped2 = false
+		escaped = false
 
 	if place_to_column(hound3_position) > hare_position:
-		escaped3 = false
+		escaped = false
 
-	if escaped1:
-		if escaped2:
-			if escaped3:
-				return true
-
-	return false
+	return escaped
 
 
 func hare_immobile() -> bool:
@@ -252,24 +235,24 @@ func hare_immobile() -> bool:
 	# the hare is immobile.
 	var trapped: bool = true
 
-	var hare_potentials: Array[int] = $Board.hare_potential(
+	$Board.hare_potential(
 		hare_position,
 		hound1_position,
 		hound2_position,
 		hound3_position
 	)
-	$Board.hare_potentials_set(false)
-	$Board.hound_potential_set(false)
-	
-	for place in hare_potentials:
+
+	for place in potentials:
 		if not (place in [hound1_position, hound2_position, hound3_position]):
 			trapped = false
+
+	$Board.hare_potentials_set(false)
+	$Board.hound_potential_set(false)
 
 	return trapped
 
 
 func turn_end() -> void:
-	print("ending turn")
 	if hare_immobile():
 		$UI/ResultScreen.show_screen("Hounds win!")
 
@@ -289,3 +272,8 @@ func turn_end() -> void:
 		focus = last_hound
 
 	emit_signal("new_turn")
+
+
+func _on_board_set_potentials(p: Array[int]):
+	# print("received set_potentials, potentials=", potentials)
+	potentials = p

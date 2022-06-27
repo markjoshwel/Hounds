@@ -9,8 +9,8 @@ var is_paused: bool = false:
 		return is_paused
 	set(value):
 		is_paused = value
-		get_tree().paused = is_paused
 		visible = is_paused
+		get_tree().paused = is_paused
 
 
 func _input(event) -> void:

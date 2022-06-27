@@ -89,38 +89,44 @@ theme_override_colors/font_color = Color(0.215686, 0.219608, 0.219608, 1)
 theme_override_font_sizes/font_size = 40
 text = "Release 2022.627.0"
 
-[node name="Label" type="Label" parent="ColorRect/SideMenuText/VBoxContainer2"]
+[node name="Spacing3" type="Control" parent="ColorRect/SideMenuText/VBoxContainer2"]
+minimum_size = Vector2(0, 4)
 offset_top = 54.0
 offset_right = 538.0
-offset_bottom = 104.0
+offset_bottom = 58.0
+
+[node name="Label" type="Label" parent="ColorRect/SideMenuText/VBoxContainer2"]
+offset_top = 62.0
+offset_right = 538.0
+offset_bottom = 112.0
 theme_override_colors/font_color = Color(0.215686, 0.219608, 0.219608, 1)
 theme_override_font_sizes/font_size = 40
 text = "by Mark Joshwel"
 
 [node name="Spacing" type="Control" parent="ColorRect/SideMenuText/VBoxContainer2"]
 minimum_size = Vector2(0, 4)
-offset_top = 108.0
-offset_right = 538.0
-offset_bottom = 112.0
-
-[node name="GodotButton" type="LinkButton" parent="ColorRect/SideMenuText/VBoxContainer2"]
 offset_top = 116.0
 offset_right = 538.0
-offset_bottom = 163.0
+offset_bottom = 120.0
+
+[node name="GodotButton" type="LinkButton" parent="ColorRect/SideMenuText/VBoxContainer2"]
+offset_top = 124.0
+offset_right = 538.0
+offset_bottom = 171.0
 theme_override_colors/font_color = Color(0.239216, 0.254902, 0.25098, 1)
 action_mode = 0
 text = "Created with Godot 4"
 
 [node name="Spacing2" type="Control" parent="ColorRect/SideMenuText/VBoxContainer2"]
 minimum_size = Vector2(0, 10)
-offset_top = 167.0
+offset_top = 175.0
 offset_right = 538.0
-offset_bottom = 177.0
+offset_bottom = 185.0
 
 [node name="SourceButton" type="LinkButton" parent="ColorRect/SideMenuText/VBoxContainer2"]
-offset_top = 181.0
+offset_top = 189.0
 offset_right = 538.0
-offset_bottom = 228.0
+offset_bottom = 236.0
 text = "Source Code (Public Domain)"
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/ButtonStart" to="." method="_on_button_start_pressed"]

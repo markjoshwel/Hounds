@@ -2,6 +2,7 @@ extends Node2D
 
 
 signal hit(place: int)
+signal set_potentials(potentials: Array[int])
 
 
 func _on_place_1_input_event(_viewport, event, _shape_idx) -> void:
@@ -64,7 +65,7 @@ func hare_potential(
 	hound1_place: int,
 	hound2_place: int,
 	hound3_place: int,
-) -> Array[int]:
+) -> void:
 	var others: Array[int] = [hound1_place, hound2_place, hound3_place]
 	var potentials: Array[int] = []
 	if place == 1:  # 2, 3, 4
@@ -221,9 +222,7 @@ func hare_potential(
 			$Places/Place10/HarePotential.visible = true
 			potentials.append(10)
 
-	print("hare potentials successful, ", potentials)
-	
-	return potentials
+	emit_signal("set_potentials", potentials)
 
 
 func hound_potential(
@@ -231,7 +230,7 @@ func hound_potential(
 	hound_a_place: int,
 	hound_b_place: int,
 	hare_place: int,
-) -> Array[int]:
+) -> void:
 	var others: Array[int] = [hound_a_place, hound_b_place, hare_place]
 	var potentials: Array[int] = []
 
@@ -333,9 +332,7 @@ func hound_potential(
 
 	# place == 1 means the hound cant go any further
 
-	print("hound potentials successful, ", potentials)
-
-	return potentials
+	emit_signal("set_potentials", potentials)
 
 
 func hare_potentials_set(value: bool) -> void:

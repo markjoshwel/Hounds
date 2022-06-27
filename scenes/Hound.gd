@@ -17,11 +17,11 @@ func _on_hound_1_input_event(_viewport, event, _shape_idx) -> void:
 		emit_signal("change_hound_focus", 1)
 
 
-func _on_hound_2_input_event(viewport, event, shape_idx) -> void:
+func _on_hound_2_input_event(_viewport, event, _shape_idx) -> void:
 	if (event is InputEventMouseButton && event.pressed):
 		emit_signal("change_hound_focus", 2)
 
 
-func _on_hound_3_input_event(viewport, event, shape_idx) -> void:
+func _on_hound_3_input_event(_viewport, event, _shape_idx) -> void:
 	if (event is InputEventMouseButton && event.pressed):
 		emit_signal("change_hound_focus", 3)
