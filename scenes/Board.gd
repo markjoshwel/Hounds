@@ -149,7 +149,7 @@ func hare_potential(
 			potentials.append(9)
 		if not (4 in others):
 			$Places/Place4/HarePotential.visible = true
-			potentials.append(5)
+			potentials.append(4)
 		if not (7 in others):
 			$Places/Place7/HarePotential.visible = true
 			potentials.append(7)
@@ -167,7 +167,7 @@ func hare_potential(
 		if not (10 in others):
 			$Places/Place10/HarePotential.visible = true
 			potentials.append(10)
-	
+
 	if place == 8:  # 5, 6, 9, 11
 		if not (5 in others):
 			$Places/Place5/HarePotential.visible = true
@@ -196,7 +196,7 @@ func hare_potential(
 			$Places/Place11/HarePotential.visible = true
 			potentials.append(11)
 
-	if place == 10:  # 7, 6, 9, 10
+	if place == 10:  # 7, 6, 9, 11
 		if not (7 in others):
 			$Places/Place7/HarePotential.visible = true
 			potentials.append(7)
@@ -206,9 +206,9 @@ func hare_potential(
 		if not (9 in others):
 			$Places/Place9/HarePotential.visible = true
 			potentials.append(9)
-		if not (10 in others):
-			$Places/Place10/HarePotential.visible = true
-			potentials.append(10)
+		if not (11 in others):
+			$Places/Place11/HarePotential.visible = true
+			potentials.append(11)
 
 	if place == 11:  # 8, 9, 10
 		if not (8 in others):
@@ -220,7 +220,7 @@ func hare_potential(
 		if not (10 in others):
 			$Places/Place10/HarePotential.visible = true
 			potentials.append(10)
-	
+
 	print("hare potentials successful, ", potentials)
 	
 	return potentials
@@ -330,14 +330,6 @@ func hound_potential(
 		if not (4 in others):
 			$Places/Place4/HoundPotential.visible = true
 			potentials.append(4)
-	
-	if place == 2:  # 1, 3
-		if not (1 in others):
-			$Places/Place1/HoundPotential.visible = true
-			potentials.append(1)
-		if not (3 in others):
-			$Places/Place3/HoundPotential.visible = true
-			potentials.append(1)
 
 	# place == 1 means the hound cant go any further
 
