@@ -8,10 +8,10 @@ Hounds is a simple game based on the [Hare and Hounds board game](https://en.wik
 
    Builds are provided in [Releases](https://github.com/markjoshwel/Hounds/releases). Alternatively, grab the latest binary from the links below:
 
-   - [Windows (64-bit)](https://github.com/markjoshwel/Hounds/releases/download/latest/hounds-win64.zip)
-   - [Linux/X11 (x86_64)](https://github.com/markjoshwel/Hounds/releases/download/latest/hounds-linux.zip)
-   - [Android (arm64)](https://github.com/markjoshwel/Hounds/releases/download/latest/hounds-android-arm64_v8a.apk)
-   - [Android (x86_64)](https://github.com/markjoshwel/Hounds/releases/download/latest/hounds-android-x86_64.apk)
+   - [Windows (64-bit)](https://github.com/markjoshwel/Hounds/releases/latest/download/hounds-win64.zip)
+   - [Linux/X11 (x86_64)](https://github.com/markjoshwel/Hounds/releases/latest/download/hounds-linux.zip)
+   - [Android (arm64)](https://github.com/markjoshwel/Hounds/releases/latest/download/hounds-android-arm64_v8a.apk)
+   - [Android (x86_64)](https://github.com/markjoshwel/Hounds/releases/latest/download/hounds-android-x86_64.apk)
 
    _Note: Only Windows and Android (arm64) have been tested to work!_
 
