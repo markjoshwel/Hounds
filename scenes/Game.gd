@@ -1,7 +1,9 @@
 extends Node2D
 
+
 signal new_turn
 signal end_turn
+
 
 var potentials: Array[int] = []
 var turn: bool = false:  # true = hare, false = hounds
@@ -22,18 +24,19 @@ var hound2_position: int = 11
 var hound3_position: int = 10
 var last_hound: Entity = Entity.HOUND2
 
+
 func _ready() -> void:
 	$UI/Turns.turns = 1
 	emit_signal("new_turn")
 
 
+func _on_turns_no_more_turns() -> void:
+	$UI/ResultScreen.show_screen("It's a tie!")
+
+
 #func _notification(what: int) -> void:
 #	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 #		$UI/PauseMenu.is_paused = true
-
-
-func _on_turns_no_more_turns() -> void:
-	$UI/ResultScreen.show_screen("It's a tie!")
 
 
 func quit() -> void:
@@ -133,7 +136,7 @@ func focus_on(ent: Entity) -> void:
 	$Board.hare_potentials_set(false)
 	$Board.hound_potential_set(false)
 	print("  potential light reset")
-	
+
 	potentials = []
 	focus = ent
 	print("  set ent=", ent)
@@ -179,6 +182,71 @@ func focus_on(ent: Entity) -> void:
 			print("  hound3 potentials = ", potentials)
 
 
+func change_hound_focus(hound: int) -> void:
+	print("change_hound_focus called")
+	if turn: return  # hare is focused right now
+
+	print("focusing on hound ", hound)
+
+	match hound:
+		1:
+			focus_on(Entity.HOUND1)
+		2:
+			focus_on(Entity.HOUND2)
+		3:
+			focus_on(Entity.HOUND3)
+
+
+func place_to_column(p: int) -> int:
+	if p == 1:
+		return 1
+	elif p in [2, 3, 4]:
+		return 2
+	elif p in [5, 6, 7]:
+		return 3
+	elif p in [8, 9, 10]:
+		return 4
+	else:
+		return 5
+
+func hare_escaped() -> bool:
+	# hare escaped requirements
+	# 1. end of board
+	# 2. all hound places are below hares place
+	# 3. no one hound is at least a column further than the hare
+	if hare_position == 11:
+		return true
+
+	var escaped1: bool = false
+	var escaped2: bool = false
+	var escaped3: bool = false
+
+	if hound1_position > hare_position:
+		escaped1 = true
+
+	if hound2_position > hare_position:
+		escaped2 = true
+
+	if hound3_position > hare_position:
+		escaped3 = true
+
+	if place_to_column(hound1_position) > hare_position:
+		escaped1 = false
+
+	if place_to_column(hound2_position) > hare_position:
+		escaped2 = false
+
+	if place_to_column(hound3_position) > hare_position:
+		escaped3 = false
+
+	if escaped1:
+		if escaped2:
+			if escaped3:
+				return true
+
+	return false
+
+
 func hare_immobile() -> bool:
 	# probe board for potential spots, and if all spots are occupied by hounds,
 	# the hare is immobile.
@@ -198,47 +266,6 @@ func hare_immobile() -> bool:
 			trapped = false
 
 	return trapped
-
-func hare_escaped() -> bool:
-	# the way the places are labelled are increasing top-down, left-right
-	# e.g:    2 5 8
-	#       1 3 6 9 Y
-	#         4 7 X      (X is 10, Y is 11)
-	# this means that if the positions of the hounds
-	#   1. lesser than that of the hare
-	#   2. OR is greater but ONLY by +1 of the hare,
-	# the hare has escaped.
-	var escaped1: bool = false
-	var escaped2: bool = false
-	var escaped3: bool = false
-	
-	if (
-		hound1_position < hare_position
-	) or (
-		hound1_position == (hare_position + 1)
-	):
-		escaped1 = true
-
-	if (
-		hound2_position < hare_position
-	) or (
-		hound2_position == (hare_position + 1)
-	):
-		escaped2 = true
-
-	if (
-		hound3_position < hare_position
-	) or (
-		hound3_position == (hare_position + 1)
-	):
-		escaped3 = true
-	
-	if escaped1:
-		if escaped2:
-			if escaped3:
-				return true
-
-	return false
 
 
 func turn_end() -> void:
@@ -262,18 +289,3 @@ func turn_end() -> void:
 		focus = last_hound
 
 	emit_signal("new_turn")
-
-
-func change_hound_focus(hound: int) -> void:
-	print("change_hound_focus called")
-	if turn: return  # hare is focused right now
-
-	print("focusing on hound ", hound)
-
-	match hound:
-		1:
-			focus_on(Entity.HOUND1)
-		2:
-			focus_on(Entity.HOUND2)
-		3:
-			focus_on(Entity.HOUND3)

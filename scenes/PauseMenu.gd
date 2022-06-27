@@ -13,7 +13,7 @@ var is_paused: bool = false:
 		visible = is_paused
 
 
-func _unhandled_input(event) -> void:
+func _input(event) -> void:
 	if event.is_action_pressed("pause"):
 		is_paused = !is_paused
 
