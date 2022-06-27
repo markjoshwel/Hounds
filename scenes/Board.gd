@@ -202,7 +202,7 @@ func hare_potential(
 			potentials.append(7)
 		if not (6 in others):
 			$Places/Place6/HarePotential.visible = true
-			potentials.append(56)
+			potentials.append(6)
 		if not (9 in others):
 			$Places/Place9/HarePotential.visible = true
 			potentials.append(9)
