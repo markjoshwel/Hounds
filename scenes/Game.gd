@@ -218,13 +218,13 @@ func hare_escaped() -> bool:
 	if hare_position > hound3_position:
 		escaped = true
 
-	if place_to_column(hound1_position) > hare_position:
+	if place_to_column(hound1_position) > place_to_column(hare_position):
 		escaped = false
 
-	if place_to_column(hound2_position) > hare_position:
+	if place_to_column(hound2_position) > place_to_column(hare_position):
 		escaped = false
 
-	if place_to_column(hound3_position) > hare_position:
+	if place_to_column(hound3_position) > place_to_column(hare_position):
 		escaped = false
 
 	return escaped
