@@ -1,12 +1,15 @@
 # Hounds
 
+| This project can only be opened in Godot 4 alpha 10. Presently, Godot 4 alpha 11 can't open the project. |
+| - |
+
 Hounds is a simple game based on the [Hare and Hounds board game](https://en.wikipedia.org/wiki/Hare_games), and is my attempt to learn the [Godot Engine](https://godotengine.org/).
 
 ## Getting the game
 
 1. **Built Binaries**
 
-   Builds are provided in [Releases](https://github.com/markjoshwel/Hounds/releases). Alternatively, grab the latest binary from the links below:
+   Builds are provided in [Releases](https://github.com/markjoshwel/Hounds/releases). Alternatively, grab a binary from the links below:
 
    - [Windows (64-bit)](https://github.com/markjoshwel/Hounds/releases/latest/download/hounds-win64.zip)
    - [Linux/X11 (x86_64)](https://github.com/markjoshwel/Hounds/releases/latest/download/hounds-linux.zip)
@@ -17,7 +20,7 @@ Hounds is a simple game based on the [Hare and Hounds board game](https://en.wik
 
 2. **Exporting from Scratch**
 
-   To export the project from scratch, you will need minimally Godot **4** and later. Also needed are target platform-specific tools (e.g. Android Studio, Xcode) which you can find out more about here: <https://docs.godotengine.org/en/latest/tutorials/export/>
+   To export the project from scratch, you will need Godot 4 alpha 10. Also needed are target platform-specific tools (e.g. Android Studio, Xcode) which you can find out more about here: <https://docs.godotengine.org/en/latest/tutorials/export/>
 
 ## License
 
